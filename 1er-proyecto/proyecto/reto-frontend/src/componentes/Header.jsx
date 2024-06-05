@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 
 function Header() {
   return (
-    <header className='bg-red-200 flex place-content-between items-center'>
+    <header className=' flex place-content-between items-center mb-6'>
       <img src={logo} alt="Logo" />
       <NavBar></NavBar>
     </header>

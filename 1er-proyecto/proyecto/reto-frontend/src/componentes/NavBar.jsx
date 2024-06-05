@@ -3,7 +3,7 @@ import burguerMenu from '../assets/images/icon-menu.svg'
 const NavBar = () => {
   return (
     <>
-      <ul className="bg-blue-400 hidden sm:flex text-[18px] sm:w-[438px] sm:place-content-around sm:text-[16px] sm:items-center">
+      <ul className=" hidden sm:flex text-[18px] sm:w-[438px] sm:place-content-around sm:text-[16px] sm:items-center">
         <li><a href="#"></a>Home</li>
         <li><a href="#"></a>News</li>
         <li><a href="#"></a>Popular</li>
