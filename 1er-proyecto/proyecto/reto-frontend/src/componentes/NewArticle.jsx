@@ -1,4 +1,6 @@
 
+import PropTypes from 'prop-types';
+
 function NewArticle({titulo, texto}) {
   return (
     <article className="h-[140px] border-b-2 border-GrayishBlue py-7 last:border-none">
@@ -7,5 +9,10 @@ function NewArticle({titulo, texto}) {
     </article>
   )
 }
+
+NewArticle.propTypes = {
+  titulo: PropTypes.string.isRequired,
+  texto: PropTypes.string.isRequired
+};
 
 export default NewArticle
