@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 const Article = ({urlImagen, numero, titulo, descripcion}) => {
   return (
-    <article className='flex h-[162px]'>
-        <div className='w-[100px] flex-none'>
+    <article className='flex h-[162px] w-[343px] mb-4 md:flex-grow'>
+        <div className='w-[120px] flex-none'>
             <img src={urlImagen} alt="Imagen del articulo"></img>
         </div>
         <div className='pl-6 '>

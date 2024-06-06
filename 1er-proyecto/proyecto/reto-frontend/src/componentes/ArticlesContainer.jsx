@@ -6,7 +6,7 @@ import Article from "./Article.jsx"
 
 const ArticlesContainer = () => {
   return (
-    <section className="sm:flex my-5 gap-x-6">
+    <section className="md:flex my-[80px] gap-x-6 flex-wrap gap-5">
       <Article 
         urlImagen={url1}
         numero="01"
