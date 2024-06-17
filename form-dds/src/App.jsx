@@ -1,34 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useForm } from "react-hook-form"
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const { register, handleSubmit, formState: {errors}} = useForm();
+  console.log(errors)
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <form onSubmit={onSubmit}>
+      <label htmlFor="nombre">Nombre</label>
+      <input type="text" id="nombre" 
+      {...register("nombre", 
+        {
+          required: true,
+          maxLength: 20,
+          minLength: 2,
+        }
+      )}
+      />
+      
+      {
+        errors.nombre && errors.nombre.type === "required" && <span>Este campo es requerido</span>
+      }
+      {
+        errors.nombre && errors.nombre.type === "maxLength" && <span>Maximo 20 caracteres</span>
+      }
+      {
+        errors.nombre && errors.nombre.type === "minLength" && <span>Minimo 2 caracteres</span>
+      }
+
+      <label htmlFor="correo">Correo</label>
+      <input type="email" id="correo" 
+      {...register("correo")}
+      />
+
+      <label htmlFor="contraseña">Contraseña</label>
+      <input type="password" id="contraseña" 
+      {...register("contraseña")}
+      />
+
+      <label htmlFor="confirmarPassword">Confirmar contraseña</label>
+      <input type="password" id="confirmarPassword"
+      {...register("confirmarPassword")}
+      />
+
+      <label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
+      <input type="date" id="fechaNacimiento"
+      {...register("fechaNacimiento")}
+      />
+
+      <label htmlFor="pais">Pais</label>
+      <select {...register("pais")}>
+        <option value="mx">Mexico</option>
+        <option value="co">Colombia</option>
+        <option value="ar">Argentina</option>
+      </select>
+
+      <label htmlFor="foto">Foto</label>
+      <input type="file" id="foto"
+      {...register("foto")}
+      />
+
+      
+      <label htmlFor="terminos">Acepto los terminos y condiciones</label>
+      <input type="checkbox" id="terminos"
+      {...register("terminos")}
+      />
+
+      <button type="submit">Enviar</button>
+    </form>
   )
 }
 
