@@ -142,7 +142,12 @@ const App = () => {
             required: {
               value: true,
               message: "Debes aceptar los terminos y condiciones"
-            }
+            },
+            validate: (value) => 
+              value[0].size < 2000000 ? 
+                value[0].type.includes("image") ? 
+                  true : "El archivo debe ser una imagen" 
+                : "La imagen no debe pesar más de 2MB",
           }
         )}
         />
