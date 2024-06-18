@@ -9,15 +9,25 @@ body{
 
 label{
   display: block;
+  white-space: nowrap;
 
 }
 
 input, select{
   width: 100%;
+  margin-left: auto;
 }
 
 span{
   display: block;
   color:tomato;
-  font-size: x-small;
+  font-size: 12px;
+}
+
+.divTerminos{
+  margin-block: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }

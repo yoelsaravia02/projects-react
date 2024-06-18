@@ -2,15 +2,15 @@ import { useForm } from "react-hook-form"
 
 const App = () => {
 
-  const { register, handleSubmit, formState: {errors}, watch} = useForm();
-  console.log(errors)
-  const onSubmit = handleSubmit((data) => {
-    
-  });
+  const { register, handleSubmit, formState: {errors}, watch, setValue, reset} = useForm();
+  const onSubmit = (data) => {
+    //Aca va la logica del endpoint correspondiente ...
+    reset();
+  };
 
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="nombre">Nombre</label>
       <input type="text" id="nombre" 
       {...register("nombre", 
@@ -125,19 +125,28 @@ const App = () => {
       </>)}
 
       <label htmlFor="foto">Foto</label>
-      <input type="file" id="foto"
-      {...register("foto")}
+      <input type="file"
+      id="foto"
+      onChange={(e) => {
+        setValue("fotoUsuario", e.target.files[0].name);
+      }}
       />
 
-      
-      <label htmlFor="terminos">Acepto los terminos y condiciones</label>
-      <input type="checkbox" id="terminos"
-      {...register("terminos",
-        {
-          required: true
-        }
-      )}
-      />
+      { errors.foto && <span>{errors.foto.message}</span>}
+
+      <div className="divTerminos">
+        <label htmlFor="terminos">Acepto los terminos y condiciones</label>
+        <input type="checkbox" id="terminos"
+        {...register("terminos",
+          {
+            required: {
+              value: true,
+              message: "Debes aceptar los terminos y condiciones"
+            }
+          }
+        )}
+        />
+      </div>
 
       <button type="submit">Enviar</button>
 
